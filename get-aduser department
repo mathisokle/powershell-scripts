@@ -1,0 +1,10 @@
+$department = ""
+
+$groups = @()
+
+$groups += (Get-ADUser -Filter {Department -eq $department} –Properties MemberOf).memberof | Get-ADGroup | Select-Object -ExpandProperty name
+
+
+cls
+$groups = $groups | Select -Unique
+Write-Host $groups
